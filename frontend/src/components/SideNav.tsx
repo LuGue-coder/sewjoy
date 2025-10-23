@@ -1,11 +1,11 @@
-import {Box, Text, } from "@chakra-ui/react"
+import {Flex, Text, } from "@chakra-ui/react"
 
 export default function SideNav() {
   return (
-    <Box bg="honeydew" color="brown">
+    <Flex  alignItems="center" direction="column" bg="darkorange">
         <Text >Projects</Text>
         <Text >Fabrics</Text>
-    </Box>
+    </Flex>
   )
 }
 

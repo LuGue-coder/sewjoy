@@ -1,15 +1,14 @@
-import CardComponent from "./components/CardComponent"
-import SideNav from "./components/SideNav"
 
-const App = () => {
+import Projects from "./pages/Projects"
+
+function App (){
   return (
     <>
-    <aside>
-      <SideNav/>
-    </aside>
-    <CardComponent/>
+    <Projects/>
     </>
+
   )
+    
 } 
 export default App
 

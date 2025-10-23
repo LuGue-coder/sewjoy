@@ -1,21 +1,20 @@
-import { Image, Button, Card } from "@chakra-ui/react"
+import { Image, Card } from "@chakra-ui/react"
 
 const CardComponent = () => {
+  
+  /*const project {id:number, url: string, title: string,} ={
+    id: 1,
+    url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDVwggfmHMHimM-uOBmjaQ3DDXtB_mAGCByQ&s",
+    title: "Pants",
+  }*/
+    
   return (
-    <Card.Root width="320px">
-      <Card.Body gap="2">
-          <Image src="https://picsum.photos/200/300" />
-        <Card.Title mt="2">Nue Camp</Card.Title>
-        <Card.Description>
-          This is the card body. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
-          Curabitur nec odio vel dui euismod fermentum.
-        </Card.Description>
+    <Card.Root width="15rem" bgColor="grey" borderRadius="2rem">
+      <Card.Body gap="3">
+          <Image  src="https://picsum.photos/200/300" aspectRatio={4 / 3}
+      width="200px"/>
+        <Card.Title mt="10" color="cornsilk">Nue Camp</Card.Title>
       </Card.Body>
-      <Card.Footer justifyContent="flex-end">
-        <Button variant="outline">View</Button>
-        <Button>Join</Button>
-      </Card.Footer>
     </Card.Root>
   )
 }
