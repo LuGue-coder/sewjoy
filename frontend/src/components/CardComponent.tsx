@@ -1,6 +1,6 @@
 import { Image, Card } from "@chakra-ui/react"
 
-const CardComponent = () => {
+const CardComponent = ( ) => {
   
   /*const project {id:number, url: string, title: string,} ={
     id: 1,
@@ -9,11 +9,10 @@ const CardComponent = () => {
   }*/
     
   return (
-    <Card.Root width="15rem" bgColor="grey" borderRadius="2rem">
-      <Card.Body gap="3">
-          <Image  src="https://picsum.photos/200/300" aspectRatio={4 / 3}
-      width="200px"/>
-        <Card.Title mt="10" color="cornsilk">Nue Camp</Card.Title>
+    <Card.Root bgColor="wheat" borderRadius="2rem"border="none">
+      <Card.Body >
+          <Image  src="https://picsum.photos/200" aspectRatio={3 / 3}/>
+        <Card.Title mt="2" color="brown" textAlign="center">Project Name</Card.Title>
       </Card.Body>
     </Card.Root>
   )

@@ -1,18 +1,30 @@
-import CardComponent from "@/components/CardComponent";
+import Dashboard from "@/components/Dashboard";
 import SideNav from "@/components/SideNav";
-import { Box } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import TopNav from "@/components/TopNav"
 
 
 function Projects (){
     return (
-        <>
-        <Box display="grid" gridTemplateColumns="repeat(3,1fr)">
+        <Grid  gridTemplateColumns="repeat(6,1fr)"
+        bg="lightyellow">
+            <GridItem
+            as="aside"
+            colSpan={1}
+            >
             <SideNav/>
-            <TopNav/>
-           <CardComponent />
-        </Box>
-        </>
+            </GridItem>
+
+            <GridItem
+            as="main"
+            colSpan={5}
+            >
+                <TopNav/>
+                <Dashboard/>
+               
+            </GridItem>
+
+        </Grid>
       )
 }
 export default Projects
