@@ -1,20 +1,27 @@
-import { Image, Card } from "@chakra-ui/react"
 
-const CardComponent = ( ) => {
-  
-  /*const project {id:number, url: string, title: string,} ={
-    id: 1,
-    url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDVwggfmHMHimM-uOBmjaQ3DDXtB_mAGCByQ&s",
-    title: "Pants",
-  }*/
+import {Card,Image} from "@chakra-ui/react";
+
+type CardProps = {
+  name:string,
+  imageURL:string,
+  id:number
+}
+
+function CardComponent (project: CardProps) {
+     return (
+
     
-  return (
-    <Card.Root bgColor="wheat" borderRadius="2rem"border="none">
-      <Card.Body >
-          <Image  src="https://picsum.photos/200" aspectRatio={3 / 3}/>
-        <Card.Title mt="2" color="brown" textAlign="center">Project Name</Card.Title>
+    <Card.Root bgColor="ivory" flex="content" flexDirection="column" alignItems="center" paddingTop="2rem">
+      <Image width="10rem" height="10rem "
+        src={project.imageURL}
+        alt={project.name}
+      />
+      <Card.Body gap="2">
+        <Card.Title  color="blackAlpha.700">{project.name}</Card.Title>
       </Card.Body>
+    
     </Card.Root>
   )
-}
-export default CardComponent
+};
+
+export default CardComponent;

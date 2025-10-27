@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Flower dress",
+    "imageURL": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2073"
+  },
+  {
+    "id": 2,
+    "name": "Green overal",
+    "imageURL": "https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1974"
+  },
+  {
+    "id": 3,
+    "name": "Pink Blazer",
+    "imageURL": "https://plus.unsplash.com/premium_photo-1675186049419-d48f4b28fe7c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687"
+  },
+  {
+    "id": 4,
+    "name": "Tulle skirt",
+    "imageURL": "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687"
+  },
+  {
+    "id": 5,
+    "name": "Tank top",
+    "imageURL": "https://images.unsplash.com/photo-1591567462127-1f25099900ab?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2933"
+  }
+  
+]
+
+
