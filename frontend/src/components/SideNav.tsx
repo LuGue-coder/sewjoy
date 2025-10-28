@@ -1,12 +1,14 @@
-import {Flex, Text, } from "@chakra-ui/react"
+import {Flex } from "@chakra-ui/react"
+import { Link } from "react-router";
 
 export default function SideNav() {
   return (
-    <Flex  direction="column" alignItems="center"
-     bgColor="lightsalmon"  minHeight="100vh" paddingTop="6rem" color="brown" fontSize="1.2rem" 
+    <Flex  flex="1" direction="column"  alignItems="center" gap={2} 
+    bgColor="lightsalmon" minHeight="100vh" paddingTop="6rem" color="brown" fontSize="1.2rem" 
      >
-        <Text padding="1rem" >Projects</Text>
-        <Text >Fabrics</Text>
+        <Link to= "/Projects" >Projects</Link>
+        <Link to= "/Fabrics" >Fabrics</Link>
+        <Link to="/Patterns"  >Patterns</Link>
     </Flex>
   )
 }

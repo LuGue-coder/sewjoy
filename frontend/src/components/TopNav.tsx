@@ -1,11 +1,10 @@
-import { Flex, Text, Spacer, Heading} from "@chakra-ui/react";
+import { Flex, Text, Spacer} from "@chakra-ui/react";
 import { Avatar, AvatarGroup } from "@chakra-ui/react"
 
 export default function TopNav() {
   return (
     <Flex  bgColor="wheat" p="1rem" alignItems="center" gap="3">
 
-      <Heading color="brown">| Projects</Heading>
       <Spacer/>
 
        <AvatarGroup>

@@ -1,6 +1,6 @@
-// Cards.tsx
-import { SimpleGrid, Button } from "@chakra-ui/react";
-import CardComponent from "./CardComponent";
+
+import { SimpleGrid, Button, Heading } from "@chakra-ui/react";
+import CardComponent from "@/components/CardComponent";
 import TestProjects from "@/data/test_projects.json";
 
 
@@ -11,16 +11,16 @@ import TestProjects from "@/data/test_projects.json";
 }
 
 
-function Cards () {
+function Projects_page () {
   
 const projects: TestProject[] = TestProjects;
 
 return (
-    
-    
+    <>
+    <Heading color="blackAlpha.700" fontSize="2rem">Projects</Heading>
     <SimpleGrid columns={{ base: 1, sm: 3, md: 4 }} padding="5rem 2rem" gap={10} minChildWidth="250px">
 
-        <Button fontSize="30px"rounded="l2"variant="outline" width="4rem" height="4rem" colorPalette="pink" mb={2} margin="auto">
+        <Button fontSize="30px"rounded="l2"variant="surface" width="4rem" height="4rem" colorPalette="orange" mb={2} margin="auto">
         ➕
       </Button>
 
@@ -29,8 +29,7 @@ return (
         imageURL={project.imageURL}/>)}
 
       </SimpleGrid>
-    
+      </>
         )}
-export default Cards
-
+export default Projects_page
 
