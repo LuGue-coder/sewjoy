@@ -7,17 +7,17 @@ type CardProps = {
   id:number
 }
 
-function CardComponent (project: CardProps) {
+function CardComponent (card: CardProps) {
      return (
 
     
     <Card.Root bgColor="ivory" flex="content" flexDirection="column" alignItems="center" paddingTop="2rem">
       <Image width="10rem" height="10rem "
-        src={project.imageURL}
-        alt={project.name}
+        src={card.imageURL}
+        alt={card.name}
       />
       <Card.Body gap="2">
-        <Card.Title  color="blackAlpha.700">{project.name}</Card.Title>
+        <Card.Title  color="blackAlpha.700">{card.name}</Card.Title>
       </Card.Body>
     
     </Card.Root>

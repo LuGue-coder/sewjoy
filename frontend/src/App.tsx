@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router";
-import Projects_page from "@/pages/Projects_page";
-import Fabrics_page from "./pages/Fabrics_page";
+import ProjectsPage from "@/pages/ProjectsPage";
+import FabricsPage from "@/pages/FabricsPage";
 import Patterns_page from "./pages/Patterns_page";
-import AppLayout from "./layout/app_layout";
+import AppLayout from "./layout/AppLayout";
 
 
 
@@ -13,9 +13,9 @@ function App (){
   return (
     <Routes>
         <Route path="/" element={<AppLayout/>}>
-          <Route index element={<Projects_page />} />
-          <Route path="projects" element={<Projects_page />} />
-          <Route path="fabrics" element={<Fabrics_page />} />
+          <Route index element={<ProjectsPage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="fabrics" element={<FabricsPage />} />
           <Route path="patterns" element={<Patterns_page />} />
         </Route>
     </Routes>

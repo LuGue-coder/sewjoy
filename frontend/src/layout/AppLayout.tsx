@@ -1,6 +1,6 @@
 
 import { Outlet } from "react-router";
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Container, Grid, GridItem } from "@chakra-ui/react";
 import SideNav from "@/components/SideNav";
 import TopNav from "@/components/TopNav";
 
@@ -20,9 +20,9 @@ function AppLayout() {
                 colSpan={5}
                 >
                     <TopNav/>
-                    <Box flex="1" p={6}>
+                    <Container flex="1" p={6}>
                     <Outlet />
-                    </Box>
+                    </Container>
                    
                 </GridItem>
     
