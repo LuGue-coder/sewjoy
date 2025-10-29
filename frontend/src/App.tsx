@@ -1,14 +1,10 @@
+import Projects from "./pages/Projects";
 
-import Projects from "./pages/Projects"
-
-function App (){
+function App() {
   return (
     <>
-    <Projects/>
+      <Projects />
     </>
-
-  )
-    
-} 
-export default App
-
+  );
+}
+export default App;
