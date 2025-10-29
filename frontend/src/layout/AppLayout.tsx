@@ -7,17 +7,17 @@ import TopNav from "@/components/TopNav";
 function AppLayout() {
   return (
     <Grid  gridTemplateColumns="repeat(6,minmax(0, 1fr))"
-            bg="lightyellow">
+            bg="lightyellow" h="100vh">
                 <GridItem
                 as="aside"
-                colSpan={1}
+                colSpan={1}   overflowY="auto"
                 >
                 <SideNav />
                 </GridItem>
     
                 <GridItem
                 as="main"
-                colSpan={5}
+                colSpan={5}   overflowY="auto"
                 >
                     <TopNav/>
                     <Container flex="1" p={6}>

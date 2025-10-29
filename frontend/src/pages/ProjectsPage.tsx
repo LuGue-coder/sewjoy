@@ -2,6 +2,7 @@
 import { SimpleGrid, Button, Heading } from "@chakra-ui/react";
 import CardComponent from "@/components/CardComponent";
 import TestProjects from "@/data/test_projects.json";
+import { useState } from "react";
 
 
  interface Project {
@@ -13,14 +14,25 @@ import TestProjects from "@/data/test_projects.json";
 
 function ProjectsPage () {
   
-const projects: Project[] = TestProjects;
+const [projects, setProjects]= useState<Project[]>(TestProjects);
+
+function addProject (newProject: Project){
+  setProjects((prev)=> [{...newProject, id: Date.now()},...prev])
+}
+
 
 return (
     <>
     <Heading color="blackAlpha.700" fontSize="2rem">Projects</Heading>
     <SimpleGrid columns={{ base: 1, sm: 3, md: 4 }} padding="5rem 2rem" gap={10} minChildWidth="250px">
 
-        <Button fontSize="30px"rounded="l2"variant="solid" width="4rem" height="4rem" colorPalette="orange" mb={2} margin="auto">
+        <Button onClick={() =>
+          addProject({
+            id:0,
+            name: "New Project",
+            imageURL:"https://placehold.co/150",
+          })
+        }fontSize="30px"rounded="l2"variant="solid" width="4rem" height="4rem" colorPalette="orange" mb={2} margin="auto">
         ➕
       </Button>
 
