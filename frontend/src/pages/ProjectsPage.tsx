@@ -1,8 +1,7 @@
 import { SimpleGrid, Button, Heading } from "@chakra-ui/react";
 import CardComponent from "@/components/CardComponent";
-import TestProjects from "@/data/test_projects.json";
-import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router";
 
 interface Project {
   id: number;
@@ -11,16 +10,9 @@ interface Project {
 }
 
 function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>(() => {
-    const stored = localStorage.getItem("projects");
-    return stored ? JSON.parse(stored) : TestProjects;
-  });
-
-  function addProject(newProject: Project) {
-    const newProjects = [{ ...newProject, id: Date.now() }, ...projects];
-    setProjects(newProjects);
-    localStorage.setItem("projects", JSON.stringify(newProjects));
-  }
+  const projects: Project[] = JSON.parse(
+    localStorage.getItem("projects") || "[]"
+  );
 
   return (
     <>
@@ -33,25 +25,20 @@ function ProjectsPage() {
         gap={10}
         minChildWidth="250px"
       >
-        <Button
-          onClick={() =>
-            addProject({
-              id: 0,
-              name: "New Project",
-              imageURL: "https://placehold.co/150?text=image",
-            })
-          }
-          fontSize="30px"
-          rounded="l2"
-          variant="solid"
-          width="4rem"
-          height="4rem"
-          colorPalette="orange"
-          mb={2}
-          margin="auto"
-        >
-          <FaPlus />
-        </Button>
+        <Link to="/addproject">
+          <Button
+            fontSize="30px"
+            rounded="l2"
+            variant="solid"
+            width="4rem"
+            height="4rem"
+            colorPalette="orange"
+            mb={2}
+            margin="auto"
+          >
+            <FaPlus />
+          </Button>
+        </Link>
 
         {projects.map((project) => (
           <CardComponent

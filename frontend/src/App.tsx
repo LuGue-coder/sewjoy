@@ -3,7 +3,7 @@ import ProjectsPage from "@/pages/ProjectsPage";
 import FabricsPage from "@/pages/FabricsPage";
 import Patterns_page from "./pages/Patterns_page";
 import AppLayout from "./layout/AppLayout";
-import AddProject from "./pages/AddProject";
+import AddProject from "./pages/AddProjectForm";
 
 function App() {
   return (
