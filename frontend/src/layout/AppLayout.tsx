@@ -10,14 +10,15 @@ function AppLayout() {
             bg="lightyellow" h="100vh">
                 <GridItem
                 as="aside"
-                colSpan={1}   overflowY="auto"
+                colSpan={1}   
                 >
-                <SideNav />
-                </GridItem>
+                    <SideNav />
+                    </GridItem>
     
                 <GridItem
                 as="main"
-                colSpan={5}   overflowY="auto"
+                colSpan={5}   
+                overflowY="auto"
                 >
                     <TopNav/>
                     <Container flex="1" p={6}>

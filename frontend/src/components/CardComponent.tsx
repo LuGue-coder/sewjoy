@@ -4,7 +4,7 @@ import {Card,Image} from "@chakra-ui/react";
 type CardProps = {
   name:string,
   imageURL:string,
-  id:number
+  id:number,
 }
 
 function CardComponent (card: CardProps) {

@@ -17,19 +17,24 @@ const fabrics: Fabrics[] = TestFabrics;
 
 return (
     <>
-    <Heading color="blackAlpha.700" fontSize="2rem">Fabrics</Heading>
-    <SimpleGrid columns={{ base: 1, sm: 3, md: 4 }} padding="5rem 2rem" gap={10} minChildWidth="250px">
+    <Heading color="blackAlpha.700" fontSize="2rem">| Fabrics</Heading>
+    <SimpleGrid columns={{ base: 1, sm: 3, md: 4 }} 
+      padding="5rem 2rem" 
+      gap={10} 
+      minChildWidth="250px">
 
         <Button fontSize="30px"rounded="l2"variant="solid" width="4rem" height="4rem" colorPalette="orange" mb={2} margin="auto">
         ➕
-      </Button>
+        </Button>
 
         {fabrics.map((fabric)=>
-        <CardComponent name={fabric.name} id={fabric.id}
+        <CardComponent 
+        name={fabric.name} 
+        id={fabric.id}
         imageURL={fabric.imageURL}/>)}
 
-      </SimpleGrid>
-      </>
+    </SimpleGrid>
+   </>
         )}
 export default FabricsPage
 
