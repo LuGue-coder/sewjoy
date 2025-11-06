@@ -2,6 +2,7 @@ import { SimpleGrid, Button, Heading } from "@chakra-ui/react";
 import CardComponent from "@/components/CardComponent";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
 
 interface Project {
   id: number;
@@ -10,9 +11,19 @@ interface Project {
 }
 
 function ProjectsPage() {
-  const projects: Project[] = JSON.parse(
-    localStorage.getItem("projects") || "[]"
-  );
+  const [projects, setProjects] = useState<Project[]>(() => {
+    return JSON.parse(localStorage.getItem("projects") || "[]");
+  });
+
+  // keep localStorage updated
+  useEffect(() => {
+    localStorage.setItem("projects", JSON.stringify(projects));
+  }, [projects]);
+
+  function deleteProject(id: number) {
+    const updated = projects.filter((p) => p.id !== id);
+    setProjects(updated);
+  }
 
   return (
     <>
@@ -45,6 +56,7 @@ function ProjectsPage() {
             name={project.name}
             id={project.id}
             imageURL={project.imageURL}
+            onDelete={deleteProject}
           />
         ))}
       </SimpleGrid>
