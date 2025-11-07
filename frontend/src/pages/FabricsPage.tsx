@@ -1,41 +1,53 @@
 import { SimpleGrid, Button, Heading } from "@chakra-ui/react";
 import CardComponent from "@/components/CardComponent";
 import TestFabrics from "@/data/test_fabrics.json";
+import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router";
 
-
- interface Fabrics {
+interface Fabrics {
   id: number;
   name: string;
   imageURL: string;
-
 }
 
+function FabricsPage() {
+  const fabrics: Fabrics[] = TestFabrics;
 
-function FabricsPage () {
-  
-const fabrics: Fabrics[] = TestFabrics;
-
-return (
+  return (
     <>
-    <Heading color="blackAlpha.700" fontSize="2rem">| Fabrics</Heading>
-    <SimpleGrid columns={{ base: 1, sm: 3, md: 4 }} 
-      padding="5rem 2rem" 
-      gap={10} 
-      minChildWidth="250px">
+      <Heading color="blackAlpha.700" fontSize="2rem">
+        | Fabrics
+      </Heading>
+      <SimpleGrid
+        columns={{ base: 1, sm: 3, md: 4 }}
+        padding="5rem 2rem"
+        gap={10}
+        minChildWidth="250px"
+      >
+        <Link to="/addfabric">
+          <Button
+            fontSize="30px"
+            rounded="l2"
+            variant="solid"
+            width="4rem"
+            height="4rem"
+            colorPalette="orange"
+            mb={2}
+            margin="auto"
+          >
+            <FaPlus />
+          </Button>
+        </Link>
 
-        <Button fontSize="30px"rounded="l2"variant="solid" width="4rem" height="4rem" colorPalette="orange" mb={2} margin="auto">
-        ➕
-        </Button>
-
-        {fabrics.map((fabric)=>
-        <CardComponent 
-        name={fabric.name} 
-        id={fabric.id}
-        imageURL={fabric.imageURL}/>)}
-
-    </SimpleGrid>
-   </>
-        )}
-export default FabricsPage
-
-
+        {fabrics.map((fabric) => (
+          <CardComponent
+            name={fabric.name}
+            id={fabric.id}
+            imageURL={fabric.imageURL}
+          />
+        ))}
+      </SimpleGrid>
+    </>
+  );
+}
+export default FabricsPage;
