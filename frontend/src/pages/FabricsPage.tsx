@@ -1,8 +1,8 @@
 import { SimpleGrid, Button, Heading } from "@chakra-ui/react";
 import CardComponent from "@/components/CardComponent";
-import TestFabrics from "@/data/test_fabrics.json";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
 
 interface Fabrics {
   id: number;
@@ -11,7 +11,18 @@ interface Fabrics {
 }
 
 function FabricsPage() {
-  const fabrics: Fabrics[] = TestFabrics;
+  const [fabrics, setFabrics] = useState<Fabrics[]>(() => {
+    return JSON.parse(localStorage.getItem("fabrics") || "[]");
+  });
+
+  useEffect(() => {
+    localStorage.setItem("fabrics", JSON.stringify(fabrics));
+  }, [fabrics]);
+
+  function deleteFabric(id: number) {
+    const updated = fabrics.filter((p) => p.id != id);
+    setFabrics(updated);
+  }
 
   return (
     <>
@@ -41,9 +52,11 @@ function FabricsPage() {
 
         {fabrics.map((fabric) => (
           <CardComponent
+            key={fabric.id}
             name={fabric.name}
             id={fabric.id}
             imageURL={fabric.imageURL}
+            onDelete={deleteFabric}
           />
         ))}
       </SimpleGrid>

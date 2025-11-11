@@ -55,7 +55,7 @@ function AddProjectForm() {
   return (
     <div>
       <Heading color="blackAlpha.700" fontSize="2rem">
-        | Add Project
+        | New project
       </Heading>
 
       <Flex minH="100vh" justify="center" margin="5rem" gap="2rem">
@@ -119,7 +119,7 @@ function AddProjectForm() {
                     Cancel
                   </Button>
                   <Button bg="chocolate" type="submit">
-                    New project
+                    Add project
                   </Button>
                 </Group>
               </Fieldset.Root>
