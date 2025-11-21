@@ -4,6 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import { fetchFabrics } from "@/database/fabrics";
+import { deleteFabric } from "../database/fabrics";
 
 interface Fabrics {
   id: string;
@@ -21,6 +22,11 @@ function FabricsPage() {
     };
     loadFabrics();
   }, []);
+
+  const handleDelete = async (id: string) => {
+    await deleteFabric(id);
+    setFabrics((prev) => prev.filter((f) => f.id !== id));
+  };
 
   // function deleteFabric(id: number) {
   //   const updated = fabrics.filter((p) => p.id != id);

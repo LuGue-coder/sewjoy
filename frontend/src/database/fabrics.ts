@@ -3,6 +3,8 @@ import {
   getDocs,
   collection,
   serverTimestamp,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "./db";
@@ -62,5 +64,13 @@ export const addFabric = async ({
     });
   } catch (error) {
     console.log("Error saving fabric", error);
+  }
+};
+
+export const deleteFabric = async (id: string) => {
+  try {
+    await deleteDoc(doc(db, "fabrics", id));
+  } catch (error) {
+    console.log("Error occured while deleting the fabric", error);
   }
 };
