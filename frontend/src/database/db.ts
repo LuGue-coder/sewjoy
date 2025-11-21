@@ -3,7 +3,7 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDKDFO3AeKTbxaCVX8NgVQTaI3cYNyw5cg",
+  apiKey: "AIzaSyDKDFO3AeKTbxaCVX8NgVQTaI3cYNyw5cg", // <--- do not commit
   authDomain: "sewproject-8debb.firebaseapp.com",
   projectId: "sewproject-8debb",
   storageBucket: "sewproject-8debb.firebasestorage.app",

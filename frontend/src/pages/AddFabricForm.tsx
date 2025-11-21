@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Group,
@@ -11,12 +12,15 @@ import {
   Flex,
   Heading,
   NumberInput,
+  Center,
+  Spinner,
 } from "@chakra-ui/react";
 import { useNavigate, Link } from "react-router";
 import { ImArrowLeft } from "react-icons/im";
 import { IconButton } from "@chakra-ui/react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { addFabric } from "../database/fabrics";
 
 const schema = z.object({
   name: z.string().min(1, "Zadej jméno."),
@@ -30,6 +34,8 @@ const schema = z.object({
 type FabricFormData = z.infer<typeof schema>;
 
 function AddFabricForm() {
+  const [submitting, isSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -40,21 +46,10 @@ function AddFabricForm() {
   });
   const navigate = useNavigate();
 
-  const onSubmit = (data: FabricFormData) => {
-    const newFabric = {
-      id: Date.now(),
-      name: data.name,
-      meters: data.meters,
-      type: data.type,
-      image: data.image,
-    };
-
-    const existingFabrics = JSON.parse(localStorage.getItem("fabrics") || "[]");
-
-    const updatedFabrics = [...existingFabrics, newFabric];
-
-    localStorage.setItem("fabrics", JSON.stringify(updatedFabrics));
-
+  const onSubmit = async (data: FabricFormData) => {
+    isSubmitting(true);
+    await addFabric(data);
+    isSubmitting(false);
     reset();
     navigate("/fabrics");
   };
@@ -150,6 +145,13 @@ function AddFabricForm() {
                 </Group>
               </Fieldset.Root>
             </VStack>
+            {submitting && (
+              <Box pos="absolute" inset="0" bg="bg/80">
+                <Center h="full">
+                  <Spinner color="teal.500" />
+                </Center>
+              </Box>
+            )}
           </Box>
         </form>
       </Flex>

@@ -1,34 +1,40 @@
-import { Button, Card, Image } from "@chakra-ui/react";
+import { Box, Image, Text, Button } from "@chakra-ui/react";
 
 type CardProps = {
   name: string;
   imageURL: string;
-  id: number;
-  onDelete?: (id: number) => void;
+  id: string;
+  onDelete: () => void;
 };
 
-function CardComponent(card: CardProps) {
+function CardComponent({ name, imageURL, id, onDelete }: CardProps) {
+  console.log("CardComponent rendered:", { name, imageURL, id });
+
   return (
-    <Card.Root
-      bgColor="ivory"
-      flex="content"
-      flexDirection="column"
-      alignItems="center"
-      paddingTop="2rem"
+    <Box
+      bg="ivory"
+      border="1px solid #ccc"
+      borderRadius="md"
+      p="1rem"
+      textAlign="center"
     >
-      <Button mt={4} colorScheme="red" onClick={() => card.onDelete?.(card.id)}>
+      <Image
+        src={imageURL}
+        alt={name}
+        width="100%"
+        height="150px"
+        objectFit="cover"
+        mb="1rem"
+      />
+
+      <Text color="blackAlpha.700" fontWeight="bold" mb="1rem">
+        {name}
+      </Text>
+
+      <Button colorScheme="red" onClick={onDelete}>
         Delete
       </Button>
-      <Image
-        width="10rem"
-        height="10rem "
-        src={card.imageURL}
-        alt={card.name}
-      />
-      <Card.Body gap="2">
-        <Card.Title color="blackAlpha.700">{card.name}</Card.Title>
-      </Card.Body>
-    </Card.Root>
+    </Box>
   );
 }
 

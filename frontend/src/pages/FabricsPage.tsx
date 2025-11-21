@@ -3,27 +3,28 @@ import CardComponent from "@/components/CardComponent";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
+import { fetchFabrics } from "@/database/fabrics";
 
 interface Fabrics {
-  id: number;
+  id: string;
   name: string;
   imageURL: string;
 }
 
 function FabricsPage() {
-  const [fabrics, setFabrics] = useState<Fabrics[]>(() => {
-    return JSON.parse(localStorage.getItem("fabrics") || "[]");
-  });
+  const [fabrics, setFabrics] = useState<Fabrics[]>([]);
 
   useEffect(() => {
-    localStorage.setItem("fabrics", JSON.stringify(fabrics));
-  }, [fabrics]);
+    const loadFabrics = async () => {
+      const data = await fetchFabrics();
+      if (data) setFabrics(data);
+    };
+    loadFabrics();
+  }, []);
 
-  function deleteFabric(id: number) {
-    const updated = fabrics.filter((p) => p.id != id);
-    setFabrics(updated);
-  }
-
+  // function deleteFabric(id: number) {
+  //   const updated = fabrics.filter((p) => p.id != id);
+  //   setFabrics(updated);
   return (
     <>
       <Heading color="blackAlpha.700" fontSize="2rem">
@@ -56,7 +57,8 @@ function FabricsPage() {
             name={fabric.name}
             id={fabric.id}
             imageURL={fabric.imageURL}
-            onDelete={deleteFabric}
+            onDelete={() => handleDelete(fabric.id)}
+            // onDelete={deleteFabric}
           />
         ))}
       </SimpleGrid>

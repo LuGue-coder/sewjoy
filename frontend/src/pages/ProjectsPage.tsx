@@ -3,27 +3,32 @@ import CardComponent from "@/components/CardComponent";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
+import { fetchProjects } from "../database/projects";
+import { deleteProject } from "../database/projects";
 
 interface Project {
-  id: number;
+  id: string;
   name: string;
   imageURL: string;
+  status?: string;
 }
 
 function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>(() => {
-    return JSON.parse(localStorage.getItem("projects") || "[]");
-  });
+  const [projects, setProjects] = useState<Project[]>([]);
 
-  // keep localStorage updated
   useEffect(() => {
-    localStorage.setItem("projects", JSON.stringify(projects));
-  }, [projects]);
+    const loadProjects = async () => {
+      const data = await fetchProjects();
+      console.log("Fetched projects:", data);
+      if (data) setProjects(data);
+    };
+    loadProjects();
+  }, []);
 
-  function deleteProject(id: number) {
-    const updated = projects.filter((p) => p.id !== id);
-    setProjects(updated);
-  }
+  const handleDelete = async (id: string) => {
+    await deleteProject(id);
+    setProjects((prev) => prev.filter((p) => p.id !== id));
+  };
 
   return (
     <>
@@ -56,7 +61,7 @@ function ProjectsPage() {
             name={project.name}
             id={project.id}
             imageURL={project.imageURL}
-            onDelete={deleteProject}
+            onDelete={() => handleDelete(project.id)}
           />
         ))}
       </SimpleGrid>

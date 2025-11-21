@@ -10,13 +10,14 @@ import {
   VStack,
   Flex,
   Heading,
+  Center,
+  Spinner,
 } from "@chakra-ui/react";
 import { useNavigate, Link } from "react-router";
 import { ImArrowLeft } from "react-icons/im";
 import { IconButton } from "@chakra-ui/react";
-import { db, storage } from "../hooks/usefirebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { addProject } from "../database/projects";
+import { useState } from "react";
 
 type ProjectFormData = {
   name: string;
@@ -25,6 +26,8 @@ type ProjectFormData = {
 };
 
 function AddProjectForm() {
+  const [submitting, isSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -34,45 +37,11 @@ function AddProjectForm() {
   const navigate = useNavigate();
 
   const onSubmit = async (data: ProjectFormData) => {
-    // const newProject = {
-    //   name: data.name,
-    //   status: data.status,
-    //   image: data.image,
-    // };
-
-    // const existingProjects = JSON.parse(
-    //   localStorage.getItem("projects") || "[]"
-    // );
-
-    // const updatedProjects = [...existingProjects, newProject];
-
-    // localStorage.setItem("projects", JSON.stringify(updatedProjects));
-    try {
-      let imageURL = "";
-
-      if (data.image && data.image[0]) {
-        const file = data.image[0];
-        const storageRef = ref(
-          storage,
-          `projects/${crypto.randomUUID()}-${file.name}`
-        );
-        await uploadBytes(storageRef, file);
-        imageURL = await getDownloadURL(storageRef);
-      }
-
-      await addDoc(collection(db, "projects"), {
-        name: data.name,
-        status: data.status,
-        imageURL,
-        createdAt: serverTimestamp(),
-      });
-
-      reset();
-      navigate("/projects");
-    } catch (err) {
-      console.error("Error adding project", err);
-      alert("Something went wrong while saving your project.");
-    }
+    isSubmitting(true);
+    await addProject(data);
+    isSubmitting(false);
+    reset();
+    navigate("/projects");
   };
 
   const handleCancel = () => reset();
@@ -149,6 +118,13 @@ function AddProjectForm() {
                 </Group>
               </Fieldset.Root>
             </VStack>
+            {submitting && (
+              <Box pos="absolute" inset="0" bg="bg/80">
+                <Center h="full">
+                  <Spinner color="teal.500" />
+                </Center>
+              </Box>
+            )}
           </Box>
         </form>
       </Flex>
