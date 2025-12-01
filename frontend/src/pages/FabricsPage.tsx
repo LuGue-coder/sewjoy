@@ -28,9 +28,6 @@ function FabricsPage() {
     setFabrics((prev) => prev.filter((f) => f.id !== id));
   };
 
-  // function deleteFabric(id: number) {
-  //   const updated = fabrics.filter((p) => p.id != id);
-  //   setFabrics(updated);
   return (
     <>
       <Heading color="blackAlpha.700" fontSize="2rem">

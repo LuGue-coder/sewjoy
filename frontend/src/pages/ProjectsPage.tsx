@@ -57,12 +57,18 @@ function ProjectsPage() {
         </Link>
 
         {projects.map((project) => (
-          <CardComponent
-            name={project.name}
-            id={project.id}
-            imageURL={project.imageURL}
-            onDelete={() => handleDelete(project.id)}
-          />
+          <Link
+            to={`/projects/${project.id}`}
+            key={project.id}
+            style={{ textDecoration: "none" }}
+          >
+            <CardComponent
+              name={project.name}
+              id={project.id}
+              imageURL={project.imageURL}
+              onDelete={() => handleDelete(project.id)}
+            />
+          </Link>
         ))}
       </SimpleGrid>
     </>

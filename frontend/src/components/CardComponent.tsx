@@ -31,7 +31,14 @@ function CardComponent({ name, imageURL, id, onDelete }: CardProps) {
         {name}
       </Text>
 
-      <Button colorScheme="red" onClick={onDelete}>
+      <Button
+        colorScheme="red"
+        onClick={(e) => {
+          e.stopPropagation(); // zastaví "bublání" kliknutí
+          e.preventDefault(); // zastaví otevření odkazu
+          onDelete();
+        }}
+      >
         Delete
       </Button>
     </Box>

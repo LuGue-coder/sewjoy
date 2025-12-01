@@ -5,12 +5,14 @@ import Patterns_page from "./pages/Patterns_page";
 import AppLayout from "./layout/AppLayout";
 import AddProjectForm from "./pages/AddProjectForm";
 import AddFabricForm from "./pages/AddFabricForm";
+import ProjectDetail from "./pages/ProjectDetail";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<ProjectsPage />} />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="addfabric" element={<AddFabricForm />} />
         <Route path="addproject" element={<AddProjectForm />} />
         <Route path="projects" element={<ProjectsPage />} />

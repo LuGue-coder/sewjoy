@@ -146,11 +146,9 @@ function AddFabricForm() {
               </Fieldset.Root>
             </VStack>
             {submitting && (
-              <Box pos="absolute" inset="0" bg="bg/80">
-                <Center h="full">
-                  <Spinner color="teal.500" />
-                </Center>
-              </Box>
+              <Center h="full">
+                <Spinner color="teal.500" />
+              </Center>
             )}
           </Box>
         </form>

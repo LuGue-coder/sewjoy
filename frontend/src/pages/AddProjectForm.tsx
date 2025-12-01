@@ -119,11 +119,9 @@ function AddProjectForm() {
               </Fieldset.Root>
             </VStack>
             {submitting && (
-              <Box pos="absolute" inset="0" bg="bg/80">
-                <Center h="full">
-                  <Spinner color="teal.500" />
-                </Center>
-              </Box>
+              <Center>
+                <Spinner size="xl" color="orange.500" />
+              </Center>
             )}
           </Box>
         </form>

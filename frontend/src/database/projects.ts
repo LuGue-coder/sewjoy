@@ -7,7 +7,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { db, storage } from "./db";
+import { db, storage } from "../database/db";
 
 interface Project {
   id: string;
