@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import { doc, getDoc } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../database/db";
 import {
   Spinner,
@@ -10,6 +10,8 @@ import {
   Box,
   Flex,
   Image,
+  Editable,
+  Button,
 } from "@chakra-ui/react";
 
 interface Project {
@@ -27,6 +29,10 @@ export default function ProjectDetail() {
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [editingName, setEditingName] = useState<string>("");
+  const [editingStatus, setEditingStatus] = useState<string>("");
+  const [editLoading, setEditLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
 
   //načtení projektu z firestore
   useEffect(() => {
@@ -48,6 +54,10 @@ export default function ProjectDetail() {
           status: data.status,
           imageURL: data.imageURL || "",
         });
+
+        //inicializace editovaných polí
+        setEditingName(data.name);
+        setEditingStatus(data.status);
       } catch (error) {
         setError("Něco se nepovedlo při načítání projektu.");
       } finally {
@@ -58,7 +68,28 @@ export default function ProjectDetail() {
     console.log("ID from params:", id);
   }, [id]);
 
+  //save changes to firestore
+  const handleEdit = async () => {
+    if (!project) return;
+    setEditLoading(true);
+    try {
+      const projectRef = doc(db, "projects", project.id);
+      await updateDoc(projectRef, {
+        name: editingName,
+        status: editingStatus,
+      });
+      setProject({ ...project, name: editingName, status: editingStatus });
+      setMessage("Projekt byl úspěšně aktualizován!");
+    } catch (err) {
+      console.error(err);
+      setMessage("Chyba při aktualizaci projektu");
+    } finally {
+      setEditLoading(false);
+    }
+  };
+
   //loading state
+
   if (loading) {
     return (
       <Center h="50vh">
@@ -83,27 +114,54 @@ export default function ProjectDetail() {
       <Heading color="orange.700" mb={8}>
         Detail projektu
       </Heading>
-
+      <Button colorPalette="orange" onClick={handleEdit} loading={editLoading}>
+        Editovat
+      </Button>
       <Flex direction="column" gap={6} maxW="500px">
         {/* Název projektu */}
         <Box>
           <Text fontWeight="bold" fontSize="lg" color="orange.700">
             Název projektu:
           </Text>
-          <Text fontSize="xl" color="orange.600">
-            {project.name}
-          </Text>
+          <Editable.Root
+            value={project.name}
+            onValueChange={(details) => setEditingName(details.value)}
+          >
+            <Editable.Preview
+              fontSize="lg"
+              color="orange.400"
+              minH="20px"
+              alignItems="flex-start"
+              width="full"
+            ></Editable.Preview>
+            <Editable.Textarea />
+          </Editable.Root>
         </Box>
 
         {/* Status */}
         <Box>
           <Text fontWeight="bold" fontSize="lg" color="orange.700">
-            Status:
+            Status
           </Text>
-          <Text fontSize="xl" color="orange.600">
-            {project.status}
-          </Text>
+          <select
+            value={editingStatus}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setEditingStatus(e.target.value)
+            }
+          >
+            <option value=""> --Choose a status -- </option>
+            <option value="idea">Idea</option>
+            <option value="in_process">In Progress</option>
+            <option value="done">Done</option>
+          </select>
         </Box>
+
+        {/* Message */}
+        {message && (
+          <Text mt={2} color={editLoading ? "gray.500" : "green.500"}>
+            {message}
+          </Text>
+        )}
 
         {/* Obrázek */}
         <Box>

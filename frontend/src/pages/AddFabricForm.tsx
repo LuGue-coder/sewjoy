@@ -14,10 +14,10 @@ import {
   NumberInput,
   Center,
   Spinner,
+  IconButton,
 } from "@chakra-ui/react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import { ImArrowLeft } from "react-icons/im";
-import { IconButton } from "@chakra-ui/react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addFabric } from "../database/fabrics";

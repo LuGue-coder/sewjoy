@@ -13,7 +13,7 @@ import {
   Center,
   Spinner,
 } from "@chakra-ui/react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 import { ImArrowLeft } from "react-icons/im";
 import { IconButton } from "@chakra-ui/react";
 import { addProject } from "../database/projects";

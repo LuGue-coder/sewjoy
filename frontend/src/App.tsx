@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import ProjectsPage from "@/pages/ProjectsPage";
 import FabricsPage from "@/pages/FabricsPage";
 import Patterns_page from "./pages/Patterns_page";
@@ -6,10 +6,12 @@ import AppLayout from "./layout/AppLayout";
 import AddProjectForm from "./pages/AddProjectForm";
 import AddFabricForm from "./pages/AddFabricForm";
 import ProjectDetail from "./pages/ProjectDetail";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
       <Route path="/" element={<AppLayout />}>
         <Route index element={<ProjectsPage />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />

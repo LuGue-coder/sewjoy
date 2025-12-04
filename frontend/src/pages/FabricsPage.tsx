@@ -1,7 +1,7 @@
 import { SimpleGrid, Button, Heading } from "@chakra-ui/react";
 import CardComponent from "@/components/CardComponent";
 import { FaPlus } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchFabrics } from "@/database/fabrics";
 import { deleteFabric } from "../database/fabrics";
