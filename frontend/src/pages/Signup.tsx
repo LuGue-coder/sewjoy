@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../database/db"; // cesta podle toho, kde máš config
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -22,7 +22,7 @@ const schema = z.object({
 });
 type LoginForm = z.infer<typeof schema>;
 
-export default function Login() {
+export default function Signup() {
   const {
     register,
     handleSubmit,
@@ -37,7 +37,7 @@ export default function Login() {
   const onSubmit = async (data: LoginForm) => {
     try {
       setLoading(true);
-      await signInWithEmailAndPassword(auth, data.email, data.password);
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
 
       navigate("/projects"); //redirect do aplikace
     } catch (error: any) {
@@ -56,7 +56,7 @@ export default function Login() {
         <Box padding="5rem">
           <Fieldset.Root size="lg" maxW="md">
             <Stack>
-              <Fieldset.Legend color="orange">Přihlášení</Fieldset.Legend>
+              <Fieldset.Legend color="orange">Registrace</Fieldset.Legend>
             </Stack>
 
             <Fieldset.Content>
